@@ -3,6 +3,9 @@ using System.Drawing;
 
 using Foundation;
 using UIKit;
+using XamarinMvvmLightSample.Core.ViewModels;
+using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace XamarinMvvmLightSample.iOS
 {
@@ -10,6 +13,12 @@ namespace XamarinMvvmLightSample.iOS
     {
         public RootViewController(IntPtr handle) : base(handle)
         {
+            ViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+        }
+
+        public MainViewModel ViewModel
+        {
+            get;private set;
         }
 
         public override void DidReceiveMemoryWarning()
@@ -25,9 +34,17 @@ namespace XamarinMvvmLightSample.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+           
+            this.SetBinding(() => Name.Text).
+                UpdateSourceTrigger("EditingChanged").
+                WhenSourceChanges(() => ViewModel.Name = Name.Text);
+
+
+            Send.SetCommand("TouchUpInside", ViewModel.Send);
 
             // Perform any additional setup after loading the view, typically from a nib.
         }
+
 
         public override void ViewWillAppear(bool animated)
         {

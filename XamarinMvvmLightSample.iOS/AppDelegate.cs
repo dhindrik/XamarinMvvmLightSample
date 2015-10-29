@@ -4,6 +4,12 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
+using Autofac;
+using Autofac.Extras.CommonServiceLocator;
+using XamarinMvvmLightSample.Core.ViewModels;
+using XamarinMvvmLightSample.Core;
 
 namespace XamarinMvvmLightSample.iOS
 {
@@ -19,6 +25,28 @@ namespace XamarinMvvmLightSample.iOS
         {
             get;
             set;
+        }
+
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+        {
+            var nav = new NavigationService();
+            nav.Initialize((UINavigationController)Window.RootViewController);
+            nav.Configure(Views.Main.ToString(), "MainView");
+            nav.Configure(Views.Hello.ToString(), "HelloViewController");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance<INavigationService>(nav);
+
+            builder.RegisterType<MainViewModel>();
+            builder.RegisterType<HelloViewModel>();
+
+            var container = builder.Build();
+
+            var serviceLocator = new AutofacServiceLocator(container);
+
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
+
+            return true;
         }
 
         //
@@ -46,5 +74,6 @@ namespace XamarinMvvmLightSample.iOS
         public override void WillTerminate(UIApplication application)
         {
         }
+
     }
 }

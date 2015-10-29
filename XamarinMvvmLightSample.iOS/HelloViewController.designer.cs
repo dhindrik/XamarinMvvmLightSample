@@ -11,26 +11,18 @@ using UIKit;
 
 namespace XamarinMvvmLightSample.iOS
 {
-	[Register ("RootViewController")]
-	partial class RootViewController
+	[Register ("HelloViewController")]
+	partial class HelloViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextField Name { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton Send { get; set; }
+		UILabel Name { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
 			if (Name != null) {
 				Name.Dispose ();
 				Name = null;
-			}
-			if (Send != null) {
-				Send.Dispose ();
-				Send = null;
 			}
 		}
 	}
