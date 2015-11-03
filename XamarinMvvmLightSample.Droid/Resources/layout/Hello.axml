@@ -2,21 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
+    android:layout_height="fill_parent">
     <TextView
-        android:text="Enter your name"
+        android:text="Hello:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/label" />
-    <EditText
+        android:id="@+id/textView1" />
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name" />
-    <Button
-        android:text="Send"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/send" />
 </LinearLayout>

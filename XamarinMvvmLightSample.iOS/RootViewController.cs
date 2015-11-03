@@ -41,8 +41,6 @@ namespace XamarinMvvmLightSample.iOS
 
 
             Send.SetCommand("TouchUpInside", ViewModel.Send);
-
-            // Perform any additional setup after loading the view, typically from a nib.
         }
 
 
