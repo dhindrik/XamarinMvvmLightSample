@@ -45,6 +45,8 @@ namespace XamarinMvvmLightSample.Droid
                 var serviceLocator = new AutofacServiceLocator(container);
 
                 ServiceLocator.SetLocatorProvider(() => serviceLocator);
+
+                _isInitialized = true;
             }
 
             ViewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
